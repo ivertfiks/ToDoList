@@ -1,5 +1,7 @@
 package src.View;
 
+import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class TaskView {
@@ -11,11 +13,19 @@ public class TaskView {
 
     public void showMenu(){
         for(UserCommands userCommands : UserCommands.values()){
-            System.out.println(userCommands.getCommandName());
+            System.out.println(userCommands.commandName);
         }
     }
 
-    public String putString(){
+    public int getInt(){
+        return input.nextInt();
+    }
+
+    public String getString(){
         return input.nextLine();
+    }
+
+    public void clearBuffer(){
+        input.nextLine();
     }
 }
