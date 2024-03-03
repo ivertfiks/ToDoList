@@ -1,7 +1,5 @@
-package src.View;
+package src.view;
 
-import java.util.Iterator;
-import java.util.ListIterator;
 import java.util.Scanner;
 
 public class TaskView {

@@ -1,8 +1,9 @@
-package src.Service;
+package src.service;
 
-import src.Model.Task;
+import src.model.Task;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class TaskManager {
@@ -35,7 +36,7 @@ public class TaskManager {
         this.taskList = taskList;
     }
 
-    public void removeTask(int numberOfColumn){
-            taskList.remove(numberOfColumn-1);
-        }
+    public void removeTask(int numberOfColumn) throws IndexOutOfBoundsException, InputMismatchException {
+        taskList.remove(numberOfColumn - 1);
+    }
 }

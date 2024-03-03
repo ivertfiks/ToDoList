@@ -1,10 +1,10 @@
-package src.Controller;
+package src.controller;
 
-import src.Model.Task;
-import src.Service.TaskManager;
-import src.View.TaskView;
+import src.model.Task;
+import src.service.TaskManager;
+import src.view.TaskView;
 
-import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class TaskController {
 
@@ -32,12 +32,23 @@ public class TaskController {
             taskView.clearBuffer();
             switch (number){
                 case 1:
-                    taskView.showString("Введите таск:");
+                    taskView.showString("Enter task:");
                     taskManager.addTask(new Task(taskView.getString()));
                     break;
                 case 2:
                     showTasks();
-                    taskManager.removeTask(taskView.getInt());
+                    try {
+                        taskManager.removeTask(taskView.getInt());
+                    }catch (InputMismatchException | IndexOutOfBoundsException exception){
+                        taskView.clearBuffer();
+                        if (exception instanceof InputMismatchException){
+                            taskView.showString("You input wrong symbol...");
+                        }else if(exception instanceof IndexOutOfBoundsException){
+                            taskView.showString(exception.getMessage());
+                        }else{
+                            taskView.showString("Unexpected error");
+                        }
+                    }
                     break;
                 case 3:
                     showTasks();
@@ -46,7 +57,7 @@ public class TaskController {
                     isRunnable = false;
                     break;
                 default:
-                    System.out.println();
+                    taskView.showString("Wrong menu number...\n");
                     break;
             }
         }
