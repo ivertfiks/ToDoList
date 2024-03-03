@@ -15,19 +15,27 @@ public class TaskManager {
     }
 
 
-        public void addTask(Task task) {
+    public void addTask(Task task) {
             taskList.add(task);
         }
 
-        public void showTasks(){
-            for(Task task : taskList){
-                System.out.println(counter + ": " + task.getTask() + "\n");
-                counter++;
-            }
-            counter = 0;
-        }
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
+    }
 
     public void removeTask(int numberOfColumn){
-            taskList.remove(numberOfColumn);
+            taskList.remove(numberOfColumn-1);
         }
 }

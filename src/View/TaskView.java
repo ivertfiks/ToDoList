@@ -24,6 +24,9 @@ public class TaskView {
     public String getString(){
         return input.nextLine();
     }
+    public void showString(String string){
+        System.out.println(string);
+    }
 
     public void clearBuffer(){
         input.nextLine();

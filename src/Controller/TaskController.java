@@ -16,6 +16,14 @@ public class TaskController {
         this.taskView = new TaskView();
     }
 
+    public void showTasks(){
+        for(Task task : taskManager.getTaskList()){
+            System.out.println(taskManager.getCounter()+1 + ": " + task.getTask() + "\n");
+            taskManager.setCounter(taskManager.getCounter()+1);
+        }
+        taskManager.setCounter(0);
+    }
+
     public void run(){
         boolean isRunnable = true;
         while(isRunnable){
@@ -24,14 +32,15 @@ public class TaskController {
             taskView.clearBuffer();
             switch (number){
                 case 1:
+                    taskView.showString("Введите таск:");
                     taskManager.addTask(new Task(taskView.getString()));
                     break;
                 case 2:
-                    taskManager.showTasks();
+                    showTasks();
                     taskManager.removeTask(taskView.getInt());
                     break;
                 case 3:
-                    taskManager.showTasks();
+                    showTasks();
                     break;
                 case 4:
                     isRunnable = false;
