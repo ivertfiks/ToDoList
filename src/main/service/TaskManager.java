@@ -1,6 +1,6 @@
-package src.service;
+package src.main.service;
 
-import src.model.Task;
+import src.main.model.Task;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;

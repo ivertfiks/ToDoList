@@ -1,6 +1,6 @@
-package src;
+package src.main;
 
-import src.controller.TaskController;
+import src.main.controller.TaskController;
 
 public class Main {
     public static void main(String[] args) {

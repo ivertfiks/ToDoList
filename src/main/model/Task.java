@@ -1,4 +1,4 @@
-package src.model;
+package src.main.model;
 
 public class Task {
     private String task;

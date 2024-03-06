@@ -1,4 +1,4 @@
-package src.view;
+package src.main.view;
 
 public enum UserCommands {
     ADDTASK("Нажмите 1 что бы добавить таск"),

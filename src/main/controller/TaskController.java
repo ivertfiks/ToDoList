@@ -1,15 +1,15 @@
-package src.controller;
+package src.main.controller;
 
-import src.model.Task;
-import src.service.TaskManager;
-import src.view.TaskView;
+import src.main.model.Task;
+import src.main.service.TaskManager;
+import src.main.view.TaskView;
 
 import java.util.InputMismatchException;
 
 public class TaskController {
 
-    TaskManager taskManager;
-    TaskView taskView;
+    private TaskManager taskManager;
+    private TaskView taskView;
 
     public TaskController() {
         this.taskManager = new TaskManager();
