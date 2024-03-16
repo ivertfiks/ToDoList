@@ -1,5 +1,6 @@
 package src.tests;
 
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import src.main.service.FileOperations;
 import src.main.service.TaskService;
@@ -9,7 +10,7 @@ public class FileOperationsTest {
     TaskService taskService;
     @BeforeEach
     public void setUp(){
-        fileOperations = new FileOperations();
+        fileOperations = new FileOperations(taskService);
         taskService = new TaskService();
     }
 

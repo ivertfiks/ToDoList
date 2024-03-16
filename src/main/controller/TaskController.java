@@ -23,7 +23,7 @@ public class TaskController {
     public TaskController() {
         this.taskService = new TaskService();
         this.taskView = new TaskView();
-        this.fileOperations = new FileOperations();
+        this.fileOperations = new FileOperations(taskService);
     }
 
     public void showTasks() {
@@ -106,7 +106,6 @@ public class TaskController {
         } catch (FileNotFoundException e) {
             taskView.showString(ExceptionMessage.FILE_NOT_FOUND_EXCEPTION.getCommandName());
         }
-        taskService = fileOperations.stringToTasks();
         boolean isRunnable = true;
         while (isRunnable) {
             taskView.showMenu();
