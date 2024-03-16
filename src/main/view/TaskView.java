@@ -1,5 +1,7 @@
 package src.main.view;
 
+import src.main.view.enum_view.MenuCommands;
+
 import java.util.Scanner;
 
 public class TaskView {
@@ -10,8 +12,8 @@ public class TaskView {
     }
 
     public void showMenu(){
-        for(UserCommands userCommands : UserCommands.values()){
-            System.out.println(userCommands.commandName);
+        for(MenuCommands menuCommands : MenuCommands.values()){
+            System.out.println(menuCommands.commandName);
         }
     }
 

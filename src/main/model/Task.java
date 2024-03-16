@@ -1,17 +1,68 @@
 package src.main.model;
 
+import src.main.model.enum_model.TaskPriority;
+
+import java.util.Objects;
+
 public class Task {
-    private String task;
+    private String title;
+
+    private static int idCounter = 0;
+    private int id;
+    private TaskPriority taskPriority;
 
     public Task(String task) {
-        this.task = task;
+        this.title = task;
+        this.taskPriority = TaskPriority.LOW;
+        idCounter++;
+        id = idCounter;
+    }
+
+    public Task(int id, String title, TaskPriority taskPriority) {
+        this.title = title;
+        this.id = id;
+        this.taskPriority = taskPriority;
+        idCounter++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTask() {
-        return task;
+        return title;
     }
 
     public void setTask(String task) {
-        this.task = task;
+        this.title = task;
+    }
+
+    public TaskPriority getTaskPriority() {
+        return taskPriority;
+    }
+
+    public void setTaskPriority(TaskPriority taskPriority) {
+        this.taskPriority = taskPriority;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Task task1 = (Task) o;
+
+        return Objects.equals(title, task1.title);
+    }
+
+    @Override
+    public String toString() {
+        return  "id=" + id + '\'' +
+                ", title='" + title +
+                ", priority='" + taskPriority + '\'';
     }
 }
