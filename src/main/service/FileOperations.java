@@ -15,10 +15,10 @@ public class FileOperations {
         this.taskService = taskService;
     }
 
-    public void writeInFile(TaskService taskService) throws IOException {
+    public void writeInFile(TaskService taskService, String path) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("id;").append("name;").append("taskPriority").append("\n");
-        File csvFile = new File("task.csv");
+        File csvFile = new File(path);
         try (FileWriter fileWriter = new FileWriter(csvFile)) {
             for (Task task : taskService.getTaskList()) {
                 stringBuilder.append(task.getId());
@@ -56,7 +56,10 @@ public class FileOperations {
         int id = Integer.parseInt(taskStringParts[0]);
         String taskTitle = taskStringParts[1];
         TaskPriority taskPriority = TaskPriority.valueOf(taskStringParts[2].toUpperCase());
-        return new Task(id, taskTitle, taskPriority);
+        return new Task(id, taskTitle, taskPriority); // В этом методе возможно исключение если в
+        // taskStringParts будут не верные параметры (к примеру не так расставили поля в excel)
+
+        //Нужно будет в этом методе написать Exception.
     }
 
 }

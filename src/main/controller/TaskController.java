@@ -121,7 +121,7 @@ public class TaskController {
                     taskView.showString(UserCommands.REMOVE_NUMBER.getCommandName());
                     try {
                         removeTask(taskView.getInt());
-                        fileOperations.writeInFile(taskService);
+                        fileOperations.writeInFile(taskService, "task.csv");
                     } catch (InputMismatchException | IndexOutOfBoundsException | IOException exception) {
                         taskView.clearBuffer();
                         if (exception instanceof InputMismatchException) {
