@@ -30,7 +30,7 @@ public class TaskServiceTest {
     public void addTask_shouldThrowDuplicateException(){
             DuplicateTaskException duplicateTaskExceptionThrown = Assertions.assertThrows(DuplicateTaskException.class, () ->{
            taskService.addTask(task);
-           taskService.addTask(task); // ПЕРЕДЕЛАТЬ МЕТОД. ПОНЯТЬ ЧТО НЕ ТАК С EXCEPTION.
+           taskService.addTask(task); // error
         });
 
     }
