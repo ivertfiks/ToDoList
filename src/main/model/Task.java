@@ -1,6 +1,7 @@
 package src.main.model;
 
 import src.main.model.enum_model.TaskPriority;
+import src.main.model.enum_model.TaskStatus;
 
 import java.util.Objects;
 
@@ -10,6 +11,7 @@ public class Task {
     private static int idCounter = 0;
     private int id;
     private TaskPriority taskPriority;
+    private TaskStatus taskStatus;
 
     public Task(String task) {
         this.title = task;
@@ -18,10 +20,11 @@ public class Task {
         id = idCounter;
     }
 
-    public Task(int id, String title, TaskPriority taskPriority) {
+    public Task(int id, String title, TaskPriority taskPriority, TaskStatus taskStatus) {
         this.title = title;
         this.id = id;
         this.taskPriority = taskPriority;
+        this.taskStatus = taskStatus;
         idCounter++;
     }
 
@@ -49,6 +52,14 @@ public class Task {
         this.taskPriority = taskPriority;
     }
 
+    public TaskStatus getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(TaskStatus taskStatus) {
+        this.taskStatus = taskStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,8 +72,9 @@ public class Task {
 
     @Override
     public String toString() {
-        return  "id=" + id + '\'' +
-                ", title='" + title +
-                ", priority='" + taskPriority + '\'';
+        return  "title='" + title + '\'' +
+                ", id=" + id +
+                ", taskPriority=" + taskPriority +
+                ", taskStatus=" + taskStatus;
     }
 }

@@ -2,6 +2,7 @@ package src.main.service;
 
 import src.main.model.Task;
 import src.main.model.enum_model.TaskPriority;
+import src.main.model.enum_model.TaskStatus;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class FileOperations {
                 stringBuilder.append(task.getTask());
                 stringBuilder.append(";");
                 stringBuilder.append(task.getTaskPriority());
+                stringBuilder.append(";");
+                stringBuilder.append(task.getTaskStatus());
                 stringBuilder.append("\n");
             }
             stringBuilder.deleteCharAt(stringBuilder.length() - 1);
@@ -56,7 +59,8 @@ public class FileOperations {
         int id = Integer.parseInt(taskStringParts[0]);
         String taskTitle = taskStringParts[1];
         TaskPriority taskPriority = TaskPriority.valueOf(taskStringParts[2].toUpperCase());
-        return new Task(id, taskTitle, taskPriority);
+        TaskStatus taskStatus = TaskStatus.valueOf(taskStringParts[3].toUpperCase());
+        return new Task(id, taskTitle, taskPriority, taskStatus);
     }
 
 }
