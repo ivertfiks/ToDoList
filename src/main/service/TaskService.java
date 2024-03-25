@@ -17,15 +17,14 @@ public class TaskService {
     }
 
 
-    public void addTask(Task task) {
-        try {
-            if (taskList.contains(task))
-                throw new DuplicateTaskException(ExceptionMessage.DUPLICATE_TASK_EXCEPTION.getCommandName());
-            taskList.add(task);
-        } catch (DuplicateTaskException e) {
-                e.getMessage();
-            }
+    public void addTask(Task task) throws DuplicateTaskException {
+
+        if (taskList.contains(task)) {
+            throw new DuplicateTaskException(ExceptionMessage.DUPLICATE_TASK_EXCEPTION.getCommandName());
         }
+        taskList.add(task);
+
+    }
 
     public int getCounter() {
         return counter;
