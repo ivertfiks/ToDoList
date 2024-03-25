@@ -1,6 +1,7 @@
 package src.main.controller;
 
 import src.main.config.RunMode;
+import src.main.exceptions.DuplicateTaskException;
 import src.main.model.Task;
 import src.main.service.FileOperations;
 import src.main.service.TaskService;
@@ -45,7 +46,7 @@ public class TaskController {
         this.runMode = runMode;
     }
 
-    public void run() {
+    public void run() throws DuplicateTaskException {
         if (runMode.equals(RunMode.CONSOLE)) {
             runScanner();
         } else if (runMode.equals(RunMode.FILE_PARSING)) {
@@ -53,7 +54,7 @@ public class TaskController {
         }
     }
 
-    public void runScanner(){
+    public void runScanner() throws DuplicateTaskException {
         boolean isRunnable = true;
         while (isRunnable) {
             taskView.showMenu();
@@ -100,7 +101,7 @@ public class TaskController {
             }
         }
     }
-    public void runFileParser(){
+    public void runFileParser() throws DuplicateTaskException {
         try {
             fileOperations.readFromFile("tasks.csv");
         } catch (FileNotFoundException e) {
@@ -121,7 +122,7 @@ public class TaskController {
                     taskView.showString(UserCommands.REMOVE_NUMBER.getCommandName());
                     try {
                         removeTask(taskView.getInt());
-                        fileOperations.writeInFile(taskService, "task.csv");
+                        fileOperations.writeInFile(taskService, "tasks.csv");
                     } catch (InputMismatchException | IndexOutOfBoundsException | IOException exception) {
                         taskView.clearBuffer();
                         if (exception instanceof InputMismatchException) {

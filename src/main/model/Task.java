@@ -53,15 +53,18 @@ public class Task {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        Task otherTask = (Task) o;
+        return (this.title.equalsIgnoreCase(otherTask.title));
+    }
 
-        Task task1 = (Task) o;
-
-        return Objects.equals(title, task1.title);
+    @Override
+    public int hashCode() {
+        return Objects.hash(title);
     }
 
     @Override
     public String toString() {
-        return  "id=" + id + '\'' +
+        return "id=" + id + '\'' +
                 ", title='" + title +
                 ", priority='" + taskPriority + '\'';
     }

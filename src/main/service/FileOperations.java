@@ -1,5 +1,6 @@
 package src.main.service;
 
+import src.main.exceptions.DuplicateTaskException;
 import src.main.model.Task;
 import src.main.model.enum_model.TaskPriority;
 
@@ -35,8 +36,9 @@ public class FileOperations {
         }
     }
 
-    public void readFromFile(String path) throws FileNotFoundException {
+    public void readFromFile(String path) throws FileNotFoundException, DuplicateTaskException {
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            taskService = new TaskService();
             String line;
             br.readLine();
             while ((line = br.readLine()) != null) {
