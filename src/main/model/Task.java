@@ -18,6 +18,7 @@ public class Task {
         this.taskPriority = TaskPriority.LOW;
         idCounter++;
         id = idCounter;
+        taskStatus = TaskStatus.PENDING;
     }
 
     public Task(int id, String title, TaskPriority taskPriority, TaskStatus taskStatus) {

@@ -2,6 +2,7 @@ package src.main.controller;
 
 import src.main.config.RunMode;
 import src.main.model.Task;
+import src.main.model.enum_model.TaskStatus;
 import src.main.service.FileOperations;
 import src.main.service.TaskService;
 import src.main.exceptions.enum_exceptions.ExceptionMessage;
@@ -41,11 +42,24 @@ public class TaskController {
         }
     }
 
+    public void changeStatus() throws IOException{
+        taskView.showString(UserCommands.EDIT_STATUS.getCommandName());
+        int id = taskView.getInt();
+        taskView.showString(UserCommands.ENTER_STATUS.getCommandName());
+        taskView.clearBuffer();
+        String status = taskView.getString();
+        for (Task task : taskService.getTaskList()) {
+            if (task.getId() == id) {
+                task.setTaskStatus(TaskStatus.valueOf(status.toUpperCase()));
+            }
+        }
+    }
+
     public void setRunMode(RunMode runMode) {
         this.runMode = runMode;
     }
 
-    public void run() {
+    public void run() throws IOException {
         if (runMode.equals(RunMode.CONSOLE)) {
             runScanner();
         } else if (runMode.equals(RunMode.FILE_PARSING)) {
@@ -53,7 +67,7 @@ public class TaskController {
         }
     }
 
-    public void runScanner(){
+    public void runScanner() throws IOException {
         boolean isRunnable = true;
         while (isRunnable) {
             taskView.showMenu();
@@ -70,7 +84,8 @@ public class TaskController {
                     }catch (IllegalArgumentException e){
                         taskView.showString(ExceptionMessage.ILLEGAL_ARGUMENT_EXCEPTION.getCommandName());
                     }
-                    taskService.addTask(new Task(taskView.getString()));
+                    taskService.addTask(new Task(task));
+                    // Тут какой то лишний символ ввода
                     break;
                 case 2:
                     showTasks();
@@ -89,9 +104,12 @@ public class TaskController {
                     }
                     break;
                 case 3:
-                    showTasks();
+                    changeStatus();
                     break;
                 case 4:
+                    showTasks();
+                    break;
+                case 5:
                     isRunnable = false;
                     break;
                 default:
@@ -100,7 +118,7 @@ public class TaskController {
             }
         }
     }
-    public void runFileParser(){
+    public void runFileParser() throws IOException {
         try {
             fileOperations.readFromFile("tasks.csv");
         } catch (FileNotFoundException e) {
@@ -134,9 +152,12 @@ public class TaskController {
                     }
                     break;
                 case 3:
-                    showTasks();
+                    changeStatus();
                     break;
                 case 4:
+                    showTasks();
+                    break;
+                case 5:
                     isRunnable = false;
                     break;
                 default:

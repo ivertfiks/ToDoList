@@ -3,7 +3,9 @@ package src.main.service;
 import src.main.exceptions.DuplicateTaskException;
 import src.main.model.Task;
 import src.main.exceptions.enum_exceptions.ExceptionMessage;
+import src.main.model.enum_model.TaskStatus;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,13 @@ public class TaskService {
             taskList.add(task);
         } catch (DuplicateTaskException e) {
                 e.getMessage();
+            }
+        }
+        public void setStatus(int id, String status) throws IOException {
+            for (Task task : taskList) {
+                if (task.getId() == id) {
+                    task.setTaskStatus(TaskStatus.valueOf(status.toUpperCase()));
+                }
             }
         }
 
